@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditContattiTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditContattiLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{contattiController.selected.id}" title="#{bundle.EditContattiTitle_id}" required="true" requiredMessage="#{bundle.EditContattiRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditContattiLabel_codicecontatto}" for="codicecontatto" />
+                    <h:inputText id="codicecontatto" value="#{contattiController.selected.codicecontatto}" title="#{bundle.EditContattiTitle_codicecontatto}" required="true" requiredMessage="#{bundle.EditContattiRequiredMessage_codicecontatto}"/>
+                    <h:outputLabel value="#{bundle.EditContattiLabel_sal}" for="sal" />
+                    <h:inputText id="sal" value="#{contattiController.selected.sal}" title="#{bundle.EditContattiTitle_sal}" required="true" requiredMessage="#{bundle.EditContattiRequiredMessage_sal}"/>
+                    <h:outputLabel value="#{bundle.EditContattiLabel_nome}" for="nome" />
+                    <h:inputTextarea rows="4" cols="30" id="nome" value="#{contattiController.selected.nome}" title="#{bundle.EditContattiTitle_nome}" required="true" requiredMessage="#{bundle.EditContattiRequiredMessage_nome}"/>
+                    <h:outputLabel value="#{bundle.EditContattiLabel_cognome}" for="cognome" />
+                    <h:inputTextarea rows="4" cols="30" id="cognome" value="#{contattiController.selected.cognome}" title="#{bundle.EditContattiTitle_cognome}" required="true" requiredMessage="#{bundle.EditContattiRequiredMessage_cognome}"/>
+                    <h:outputLabel value="#{bundle.EditContattiLabel_dataIni}" for="dataIni" />
+                    <h:inputText id="dataIni" value="#{contattiController.selected.dataIni}" title="#{bundle.EditContattiTitle_dataIni}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditContattiLabel_dataFin}" for="dataFin" />
+                    <h:inputText id="dataFin" value="#{contattiController.selected.dataFin}" title="#{bundle.EditContattiTitle_dataFin}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditContattiLabel_idCausa}" for="idCausa" />
+                    <h:selectOneMenu id="idCausa" value="#{contattiController.selected.idCausa}" title="#{bundle.EditContattiTitle_idCausa}" >
+                        <f:selectItems value="#{tipoCausaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditContattiLabel_contattiAttivi}" for="contattiAttivi" />
+                    <h:selectOneMenu id="contattiAttivi" value="#{contattiController.selected.contattiAttivi}" title="#{bundle.EditContattiTitle_contattiAttivi}" >
+                        <f:selectItems value="#{contattiAttiviController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{contattiController.update}" value="#{bundle.EditContattiSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditContattiViewLink}"/>
+                <br />
+                <h:commandLink action="#{contattiController.prepareList}" value="#{bundle.EditContattiShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditContattiIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

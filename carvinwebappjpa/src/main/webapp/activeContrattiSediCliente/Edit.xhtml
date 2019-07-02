@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditActiveContrattiSediClienteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditActiveContrattiSediClienteLabel_idTipoModContratto}" for="idTipoModContratto" />
+                    <h:selectOneMenu id="idTipoModContratto" value="#{activeContrattiSediClienteController.selected.idTipoModContratto}" title="#{bundle.EditActiveContrattiSediClienteTitle_idTipoModContratto}" >
+                        <f:selectItems value="#{tipoModContrattoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditActiveContrattiSediClienteLabel_activeContracts}" for="activeContracts" />
+                    <h:selectOneMenu id="activeContracts" value="#{activeContrattiSediClienteController.selected.activeContracts}" title="#{bundle.EditActiveContrattiSediClienteTitle_activeContracts}" required="true" requiredMessage="#{bundle.EditActiveContrattiSediClienteRequiredMessage_activeContracts}">
+                        <f:selectItems value="#{activeContractsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditActiveContrattiSediClienteLabel_idCliente}" for="idCliente" />
+                    <h:selectOneMenu id="idCliente" value="#{activeContrattiSediClienteController.selected.idCliente}" title="#{bundle.EditActiveContrattiSediClienteTitle_idCliente}" required="true" requiredMessage="#{bundle.EditActiveContrattiSediClienteRequiredMessage_idCliente}">
+                        <f:selectItems value="#{activeClientsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditActiveContrattiSediClienteLabel_idPartner}" for="idPartner" />
+                    <h:selectOneMenu id="idPartner" value="#{activeContrattiSediClienteController.selected.idPartner}" title="#{bundle.EditActiveContrattiSediClienteTitle_idPartner}" >
+                        <f:selectItems value="#{activeClientsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditActiveContrattiSediClienteLabel_sediAttive}" for="sediAttive" />
+                    <h:selectOneMenu id="sediAttive" value="#{activeContrattiSediClienteController.selected.sediAttive}" title="#{bundle.EditActiveContrattiSediClienteTitle_sediAttive}" required="true" requiredMessage="#{bundle.EditActiveContrattiSediClienteRequiredMessage_sediAttive}">
+                        <f:selectItems value="#{sediAttiveController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{activeContrattiSediClienteController.update}" value="#{bundle.EditActiveContrattiSediClienteSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditActiveContrattiSediClienteViewLink}"/>
+                <br />
+                <h:commandLink action="#{activeContrattiSediClienteController.prepareList}" value="#{bundle.EditActiveContrattiSediClienteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditActiveContrattiSediClienteIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

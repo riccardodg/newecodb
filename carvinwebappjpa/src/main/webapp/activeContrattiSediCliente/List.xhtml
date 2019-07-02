@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListActiveContrattiSediClienteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListActiveContrattiSediClienteEmpty}" rendered="#{activeContrattiSediClienteController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{activeContrattiSediClienteController.items.rowCount > 0}">
+                    <h:outputText value="#{activeContrattiSediClienteController.pagination.pageFirstItem + 1}..#{activeContrattiSediClienteController.pagination.pageLastItem + 1}/#{activeContrattiSediClienteController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{activeContrattiSediClienteController.previous}" value="#{bundle.Previous} #{activeContrattiSediClienteController.pagination.pageSize}" rendered="#{activeContrattiSediClienteController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{activeContrattiSediClienteController.next}" value="#{bundle.Next} #{activeContrattiSediClienteController.pagination.pageSize}" rendered="#{activeContrattiSediClienteController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{activeContrattiSediClienteController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActiveContrattiSediClienteTitle_idTipoModContratto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoModContratto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActiveContrattiSediClienteTitle_activeContracts}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.activeContracts}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActiveContrattiSediClienteTitle_idCliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCliente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActiveContrattiSediClienteTitle_idPartner}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPartner}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActiveContrattiSediClienteTitle_sediAttive}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sediAttive}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{activeContrattiSediClienteController.prepareView}" value="#{bundle.ListActiveContrattiSediClienteViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{activeContrattiSediClienteController.prepareEdit}" value="#{bundle.ListActiveContrattiSediClienteEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{activeContrattiSediClienteController.destroy}" value="#{bundle.ListActiveContrattiSediClienteDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{activeContrattiSediClienteController.prepareCreate}" value="#{bundle.ListActiveContrattiSediClienteCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListActiveContrattiSediClienteIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

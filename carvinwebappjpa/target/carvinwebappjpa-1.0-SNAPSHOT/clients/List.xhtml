@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListClientsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListClientsEmpty}" rendered="#{clientsController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{clientsController.items.rowCount > 0}">
+                    <h:outputText value="#{clientsController.pagination.pageFirstItem + 1}..#{clientsController.pagination.pageLastItem + 1}/#{clientsController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{clientsController.previous}" value="#{bundle.Previous} #{clientsController.pagination.pageSize}" rendered="#{clientsController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{clientsController.next}" value="#{bundle.Next} #{clientsController.pagination.pageSize}" rendered="#{clientsController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{clientsController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClientsTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClientsTitle_codicecliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codicecliente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClientsTitle_paiv}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.paiv}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClientsTitle_ragionesoc}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ragionesoc}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClientsTitle_cofi}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cofi}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClientsTitle_dataIni}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dataIni}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClientsTitle_dataFin}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dataFin}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClientsTitle_activeClients}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.activeClients}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClientsTitle_idCausa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCausa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListClientsTitle_idTipoCliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoCliente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{clientsController.prepareView}" value="#{bundle.ListClientsViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{clientsController.prepareEdit}" value="#{bundle.ListClientsEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{clientsController.destroy}" value="#{bundle.ListClientsDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{clientsController.prepareCreate}" value="#{bundle.ListClientsCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListClientsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

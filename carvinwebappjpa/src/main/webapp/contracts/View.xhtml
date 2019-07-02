@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewContractsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewContractsLabel_id}"/>
+                    <h:outputText value="#{contractsController.selected.id}" title="#{bundle.ViewContractsTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewContractsLabel_codicecontratto}"/>
+                    <h:outputText value="#{contractsController.selected.codicecontratto}" title="#{bundle.ViewContractsTitle_codicecontratto}"/>
+                    <h:outputText value="#{bundle.ViewContractsLabel_dataIni}"/>
+                    <h:outputText value="#{contractsController.selected.dataIni}" title="#{bundle.ViewContractsTitle_dataIni}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewContractsLabel_dataFin}"/>
+                    <h:outputText value="#{contractsController.selected.dataFin}" title="#{bundle.ViewContractsTitle_dataFin}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewContractsLabel_idCausa}"/>
+                    <h:outputText value="#{contractsController.selected.idCausa}" title="#{bundle.ViewContractsTitle_idCausa}"/>
+                    <h:outputText value="#{bundle.ViewContractsLabel_idTipoContratto}"/>
+                    <h:outputText value="#{contractsController.selected.idTipoContratto}" title="#{bundle.ViewContractsTitle_idTipoContratto}"/>
+                    <h:outputText value="#{bundle.ViewContractsLabel_activeContracts}"/>
+                    <h:outputText value="#{contractsController.selected.activeContracts}" title="#{bundle.ViewContractsTitle_activeContracts}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{contractsController.destroyAndView}" value="#{bundle.ViewContractsDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewContractsEditLink}"/>
+                <br />
+                <h:commandLink action="#{contractsController.prepareCreate}" value="#{bundle.ViewContractsCreateLink}" />
+                <br />
+                <h:commandLink action="#{contractsController.prepareList}" value="#{bundle.ViewContractsShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewContractsIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

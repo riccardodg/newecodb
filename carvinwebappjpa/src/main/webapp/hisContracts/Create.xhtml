@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateHisContractsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateHisContractsLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{hisContractsController.selected.id}" title="#{bundle.CreateHisContractsTitle_id}" required="true" requiredMessage="#{bundle.CreateHisContractsRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateHisContractsLabel_idContrattoB}" for="idContrattoB" />
+                    <h:inputText id="idContrattoB" value="#{hisContractsController.selected.idContrattoB}" title="#{bundle.CreateHisContractsTitle_idContrattoB}" required="true" requiredMessage="#{bundle.CreateHisContractsRequiredMessage_idContrattoB}"/>
+                    <h:outputLabel value="#{bundle.CreateHisContractsLabel_idContrattoA}" for="idContrattoA" />
+                    <h:selectOneMenu id="idContrattoA" value="#{hisContractsController.selected.idContrattoA}" title="#{bundle.CreateHisContractsTitle_idContrattoA}" required="true" requiredMessage="#{bundle.CreateHisContractsRequiredMessage_idContrattoA}">
+                        <f:selectItems value="#{activeContractsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{hisContractsController.create}" value="#{bundle.CreateHisContractsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{hisContractsController.prepareList}" value="#{bundle.CreateHisContractsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateHisContractsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateContractsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateContractsLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{contractsController.selected.id}" title="#{bundle.CreateContractsTitle_id}" required="true" requiredMessage="#{bundle.CreateContractsRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateContractsLabel_codicecontratto}" for="codicecontratto" />
+                    <h:inputText id="codicecontratto" value="#{contractsController.selected.codicecontratto}" title="#{bundle.CreateContractsTitle_codicecontratto}" required="true" requiredMessage="#{bundle.CreateContractsRequiredMessage_codicecontratto}"/>
+                    <h:outputLabel value="#{bundle.CreateContractsLabel_dataIni}" for="dataIni" />
+                    <h:inputText id="dataIni" value="#{contractsController.selected.dataIni}" title="#{bundle.CreateContractsTitle_dataIni}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateContractsLabel_dataFin}" for="dataFin" />
+                    <h:inputText id="dataFin" value="#{contractsController.selected.dataFin}" title="#{bundle.CreateContractsTitle_dataFin}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateContractsLabel_idCausa}" for="idCausa" />
+                    <h:selectOneMenu id="idCausa" value="#{contractsController.selected.idCausa}" title="#{bundle.CreateContractsTitle_idCausa}" >
+                        <f:selectItems value="#{tipoCausaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateContractsLabel_idTipoContratto}" for="idTipoContratto" />
+                    <h:selectOneMenu id="idTipoContratto" value="#{contractsController.selected.idTipoContratto}" title="#{bundle.CreateContractsTitle_idTipoContratto}" >
+                        <f:selectItems value="#{tipoContrattoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateContractsLabel_activeContracts}" for="activeContracts" />
+                    <h:selectOneMenu id="activeContracts" value="#{contractsController.selected.activeContracts}" title="#{bundle.CreateContractsTitle_activeContracts}" >
+                        <f:selectItems value="#{activeContractsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{contractsController.create}" value="#{bundle.CreateContractsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{contractsController.prepareList}" value="#{bundle.CreateContractsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateContractsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

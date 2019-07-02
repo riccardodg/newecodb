@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateContattiAttiviTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateContattiAttiviLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{contattiAttiviController.selected.id}" title="#{bundle.CreateContattiAttiviTitle_id}" required="true" requiredMessage="#{bundle.CreateContattiAttiviRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateContattiAttiviLabel_codicecontatto}" for="codicecontatto" />
+                    <h:inputText id="codicecontatto" value="#{contattiAttiviController.selected.codicecontatto}" title="#{bundle.CreateContattiAttiviTitle_codicecontatto}" required="true" requiredMessage="#{bundle.CreateContattiAttiviRequiredMessage_codicecontatto}"/>
+                    <h:outputLabel value="#{bundle.CreateContattiAttiviLabel_dataIni}" for="dataIni" />
+                    <h:inputText id="dataIni" value="#{contattiAttiviController.selected.dataIni}" title="#{bundle.CreateContattiAttiviTitle_dataIni}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateContattiAttiviLabel_dataFin}" for="dataFin" />
+                    <h:inputText id="dataFin" value="#{contattiAttiviController.selected.dataFin}" title="#{bundle.CreateContattiAttiviTitle_dataFin}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateContattiAttiviLabel_contatti}" for="contatti" />
+                    <h:selectOneMenu id="contatti" value="#{contattiAttiviController.selected.contatti}" title="#{bundle.CreateContattiAttiviTitle_contatti}" required="true" requiredMessage="#{bundle.CreateContattiAttiviRequiredMessage_contatti}">
+                        <f:selectItems value="#{contattiController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{contattiAttiviController.create}" value="#{bundle.CreateContattiAttiviSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{contattiAttiviController.prepareList}" value="#{bundle.CreateContattiAttiviShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateContattiAttiviIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

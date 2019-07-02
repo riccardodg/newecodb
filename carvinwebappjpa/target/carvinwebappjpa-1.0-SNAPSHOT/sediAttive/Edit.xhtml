@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditSediAttiveTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditSediAttiveLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{sediAttiveController.selected.id}" title="#{bundle.EditSediAttiveTitle_id}" required="true" requiredMessage="#{bundle.EditSediAttiveRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditSediAttiveLabel_codicesede}" for="codicesede" />
+                    <h:inputText id="codicesede" value="#{sediAttiveController.selected.codicesede}" title="#{bundle.EditSediAttiveTitle_codicesede}" required="true" requiredMessage="#{bundle.EditSediAttiveRequiredMessage_codicesede}"/>
+                    <h:outputLabel value="#{bundle.EditSediAttiveLabel_dataIni}" for="dataIni" />
+                    <h:inputText id="dataIni" value="#{sediAttiveController.selected.dataIni}" title="#{bundle.EditSediAttiveTitle_dataIni}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditSediAttiveLabel_dataFin}" for="dataFin" />
+                    <h:inputText id="dataFin" value="#{sediAttiveController.selected.dataFin}" title="#{bundle.EditSediAttiveTitle_dataFin}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditSediAttiveLabel_idTipoSede}" for="idTipoSede" />
+                    <h:selectOneMenu id="idTipoSede" value="#{sediAttiveController.selected.idTipoSede}" title="#{bundle.EditSediAttiveTitle_idTipoSede}" >
+                        <f:selectItems value="#{tipoSedeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditSediAttiveLabel_sedi}" for="sedi" />
+                    <h:selectOneMenu id="sedi" value="#{sediAttiveController.selected.sedi}" title="#{bundle.EditSediAttiveTitle_sedi}" required="true" requiredMessage="#{bundle.EditSediAttiveRequiredMessage_sedi}">
+                        <f:selectItems value="#{sediController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{sediAttiveController.update}" value="#{bundle.EditSediAttiveSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditSediAttiveViewLink}"/>
+                <br />
+                <h:commandLink action="#{sediAttiveController.prepareList}" value="#{bundle.EditSediAttiveShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditSediAttiveIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

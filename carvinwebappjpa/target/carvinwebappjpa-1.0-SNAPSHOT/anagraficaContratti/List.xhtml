@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAnagraficaContrattiTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListAnagraficaContrattiEmpty}" rendered="#{anagraficaContrattiController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{anagraficaContrattiController.items.rowCount > 0}">
+                    <h:outputText value="#{anagraficaContrattiController.pagination.pageFirstItem + 1}..#{anagraficaContrattiController.pagination.pageLastItem + 1}/#{anagraficaContrattiController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{anagraficaContrattiController.previous}" value="#{bundle.Previous} #{anagraficaContrattiController.pagination.pageSize}" rendered="#{anagraficaContrattiController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{anagraficaContrattiController.next}" value="#{bundle.Next} #{anagraficaContrattiController.pagination.pageSize}" rendered="#{anagraficaContrattiController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{anagraficaContrattiController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAnagraficaContrattiTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAnagraficaContrattiTitle_info1}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.info1}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAnagraficaContrattiTitle_info2}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.info2}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAnagraficaContrattiTitle_info3}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.info3}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAnagraficaContrattiTitle_info4}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.info4}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAnagraficaContrattiTitle_info5}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.info5}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAnagraficaContrattiTitle_activeContracts}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.activeContracts}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{anagraficaContrattiController.prepareView}" value="#{bundle.ListAnagraficaContrattiViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{anagraficaContrattiController.prepareEdit}" value="#{bundle.ListAnagraficaContrattiEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{anagraficaContrattiController.destroy}" value="#{bundle.ListAnagraficaContrattiDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{anagraficaContrattiController.prepareCreate}" value="#{bundle.ListAnagraficaContrattiCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListAnagraficaContrattiIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

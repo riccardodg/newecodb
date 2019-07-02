@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewAnagraficaContrattiTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewAnagraficaContrattiLabel_id}"/>
+                    <h:outputText value="#{anagraficaContrattiController.selected.id}" title="#{bundle.ViewAnagraficaContrattiTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewAnagraficaContrattiLabel_info1}"/>
+                    <h:outputText value="#{anagraficaContrattiController.selected.info1}" title="#{bundle.ViewAnagraficaContrattiTitle_info1}"/>
+                    <h:outputText value="#{bundle.ViewAnagraficaContrattiLabel_info2}"/>
+                    <h:outputText value="#{anagraficaContrattiController.selected.info2}" title="#{bundle.ViewAnagraficaContrattiTitle_info2}"/>
+                    <h:outputText value="#{bundle.ViewAnagraficaContrattiLabel_info3}"/>
+                    <h:outputText value="#{anagraficaContrattiController.selected.info3}" title="#{bundle.ViewAnagraficaContrattiTitle_info3}"/>
+                    <h:outputText value="#{bundle.ViewAnagraficaContrattiLabel_info4}"/>
+                    <h:outputText value="#{anagraficaContrattiController.selected.info4}" title="#{bundle.ViewAnagraficaContrattiTitle_info4}"/>
+                    <h:outputText value="#{bundle.ViewAnagraficaContrattiLabel_info5}"/>
+                    <h:outputText value="#{anagraficaContrattiController.selected.info5}" title="#{bundle.ViewAnagraficaContrattiTitle_info5}"/>
+                    <h:outputText value="#{bundle.ViewAnagraficaContrattiLabel_activeContracts}"/>
+                    <h:outputText value="#{anagraficaContrattiController.selected.activeContracts}" title="#{bundle.ViewAnagraficaContrattiTitle_activeContracts}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{anagraficaContrattiController.destroyAndView}" value="#{bundle.ViewAnagraficaContrattiDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewAnagraficaContrattiEditLink}"/>
+                <br />
+                <h:commandLink action="#{anagraficaContrattiController.prepareCreate}" value="#{bundle.ViewAnagraficaContrattiCreateLink}" />
+                <br />
+                <h:commandLink action="#{anagraficaContrattiController.prepareList}" value="#{bundle.ViewAnagraficaContrattiShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewAnagraficaContrattiIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

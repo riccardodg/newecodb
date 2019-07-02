@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewContattiAttiviTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewContattiAttiviLabel_id}"/>
+                    <h:outputText value="#{contattiAttiviController.selected.id}" title="#{bundle.ViewContattiAttiviTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewContattiAttiviLabel_codicecontatto}"/>
+                    <h:outputText value="#{contattiAttiviController.selected.codicecontatto}" title="#{bundle.ViewContattiAttiviTitle_codicecontatto}"/>
+                    <h:outputText value="#{bundle.ViewContattiAttiviLabel_dataIni}"/>
+                    <h:outputText value="#{contattiAttiviController.selected.dataIni}" title="#{bundle.ViewContattiAttiviTitle_dataIni}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewContattiAttiviLabel_dataFin}"/>
+                    <h:outputText value="#{contattiAttiviController.selected.dataFin}" title="#{bundle.ViewContattiAttiviTitle_dataFin}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewContattiAttiviLabel_contatti}"/>
+                    <h:outputText value="#{contattiAttiviController.selected.contatti}" title="#{bundle.ViewContattiAttiviTitle_contatti}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{contattiAttiviController.destroyAndView}" value="#{bundle.ViewContattiAttiviDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewContattiAttiviEditLink}"/>
+                <br />
+                <h:commandLink action="#{contattiAttiviController.prepareCreate}" value="#{bundle.ViewContattiAttiviCreateLink}" />
+                <br />
+                <h:commandLink action="#{contattiAttiviController.prepareList}" value="#{bundle.ViewContattiAttiviShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewContattiAttiviIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

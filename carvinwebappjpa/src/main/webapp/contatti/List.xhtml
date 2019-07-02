@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListContattiTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListContattiEmpty}" rendered="#{contattiController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{contattiController.items.rowCount > 0}">
+                    <h:outputText value="#{contattiController.pagination.pageFirstItem + 1}..#{contattiController.pagination.pageLastItem + 1}/#{contattiController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{contattiController.previous}" value="#{bundle.Previous} #{contattiController.pagination.pageSize}" rendered="#{contattiController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{contattiController.next}" value="#{bundle.Next} #{contattiController.pagination.pageSize}" rendered="#{contattiController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{contattiController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListContattiTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListContattiTitle_codicecontatto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codicecontatto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListContattiTitle_sal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sal}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListContattiTitle_nome}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nome}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListContattiTitle_cognome}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cognome}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListContattiTitle_dataIni}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dataIni}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListContattiTitle_dataFin}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dataFin}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListContattiTitle_idCausa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCausa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListContattiTitle_contattiAttivi}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contattiAttivi}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{contattiController.prepareView}" value="#{bundle.ListContattiViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{contattiController.prepareEdit}" value="#{bundle.ListContattiEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{contattiController.destroy}" value="#{bundle.ListContattiDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{contattiController.prepareCreate}" value="#{bundle.ListContattiCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListContattiIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

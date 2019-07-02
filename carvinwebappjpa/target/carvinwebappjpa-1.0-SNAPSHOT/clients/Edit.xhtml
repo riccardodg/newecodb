@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditClientsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditClientsLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{clientsController.selected.id}" title="#{bundle.EditClientsTitle_id}" required="true" requiredMessage="#{bundle.EditClientsRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditClientsLabel_codicecliente}" for="codicecliente" />
+                    <h:inputText id="codicecliente" value="#{clientsController.selected.codicecliente}" title="#{bundle.EditClientsTitle_codicecliente}" required="true" requiredMessage="#{bundle.EditClientsRequiredMessage_codicecliente}"/>
+                    <h:outputLabel value="#{bundle.EditClientsLabel_paiv}" for="paiv" />
+                    <h:inputText id="paiv" value="#{clientsController.selected.paiv}" title="#{bundle.EditClientsTitle_paiv}" />
+                    <h:outputLabel value="#{bundle.EditClientsLabel_ragionesoc}" for="ragionesoc" />
+                    <h:inputText id="ragionesoc" value="#{clientsController.selected.ragionesoc}" title="#{bundle.EditClientsTitle_ragionesoc}" required="true" requiredMessage="#{bundle.EditClientsRequiredMessage_ragionesoc}"/>
+                    <h:outputLabel value="#{bundle.EditClientsLabel_cofi}" for="cofi" />
+                    <h:inputText id="cofi" value="#{clientsController.selected.cofi}" title="#{bundle.EditClientsTitle_cofi}" />
+                    <h:outputLabel value="#{bundle.EditClientsLabel_dataIni}" for="dataIni" />
+                    <h:inputText id="dataIni" value="#{clientsController.selected.dataIni}" title="#{bundle.EditClientsTitle_dataIni}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditClientsLabel_dataFin}" for="dataFin" />
+                    <h:inputText id="dataFin" value="#{clientsController.selected.dataFin}" title="#{bundle.EditClientsTitle_dataFin}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditClientsLabel_activeClients}" for="activeClients" />
+                    <h:selectOneMenu id="activeClients" value="#{clientsController.selected.activeClients}" title="#{bundle.EditClientsTitle_activeClients}" >
+                        <f:selectItems value="#{activeClientsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditClientsLabel_idCausa}" for="idCausa" />
+                    <h:selectOneMenu id="idCausa" value="#{clientsController.selected.idCausa}" title="#{bundle.EditClientsTitle_idCausa}" >
+                        <f:selectItems value="#{tipoCausaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditClientsLabel_idTipoCliente}" for="idTipoCliente" />
+                    <h:selectOneMenu id="idTipoCliente" value="#{clientsController.selected.idTipoCliente}" title="#{bundle.EditClientsTitle_idTipoCliente}" >
+                        <f:selectItems value="#{tipoClienteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{clientsController.update}" value="#{bundle.EditClientsSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditClientsViewLink}"/>
+                <br />
+                <h:commandLink action="#{clientsController.prepareList}" value="#{bundle.EditClientsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditClientsIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

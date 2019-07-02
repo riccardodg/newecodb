@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewSediAttiveTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewSediAttiveLabel_id}"/>
+                    <h:outputText value="#{sediAttiveController.selected.id}" title="#{bundle.ViewSediAttiveTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewSediAttiveLabel_codicesede}"/>
+                    <h:outputText value="#{sediAttiveController.selected.codicesede}" title="#{bundle.ViewSediAttiveTitle_codicesede}"/>
+                    <h:outputText value="#{bundle.ViewSediAttiveLabel_dataIni}"/>
+                    <h:outputText value="#{sediAttiveController.selected.dataIni}" title="#{bundle.ViewSediAttiveTitle_dataIni}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewSediAttiveLabel_dataFin}"/>
+                    <h:outputText value="#{sediAttiveController.selected.dataFin}" title="#{bundle.ViewSediAttiveTitle_dataFin}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewSediAttiveLabel_idTipoSede}"/>
+                    <h:outputText value="#{sediAttiveController.selected.idTipoSede}" title="#{bundle.ViewSediAttiveTitle_idTipoSede}"/>
+                    <h:outputText value="#{bundle.ViewSediAttiveLabel_sedi}"/>
+                    <h:outputText value="#{sediAttiveController.selected.sedi}" title="#{bundle.ViewSediAttiveTitle_sedi}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{sediAttiveController.destroyAndView}" value="#{bundle.ViewSediAttiveDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewSediAttiveEditLink}"/>
+                <br />
+                <h:commandLink action="#{sediAttiveController.prepareCreate}" value="#{bundle.ViewSediAttiveCreateLink}" />
+                <br />
+                <h:commandLink action="#{sediAttiveController.prepareList}" value="#{bundle.ViewSediAttiveShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewSediAttiveIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

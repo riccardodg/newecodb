@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewGeografiaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewGeografiaLabel_id}"/>
+                    <h:outputText value="#{geografiaController.selected.id}" title="#{bundle.ViewGeografiaTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewGeografiaLabel_codicegeografia}"/>
+                    <h:outputText value="#{geografiaController.selected.codicegeografia}" title="#{bundle.ViewGeografiaTitle_codicegeografia}"/>
+                    <h:outputText value="#{bundle.ViewGeografiaLabel_provincia}"/>
+                    <h:outputText value="#{geografiaController.selected.provincia}" title="#{bundle.ViewGeografiaTitle_provincia}"/>
+                    <h:outputText value="#{bundle.ViewGeografiaLabel_microzona}"/>
+                    <h:outputText value="#{geografiaController.selected.microzona}" title="#{bundle.ViewGeografiaTitle_microzona}"/>
+                    <h:outputText value="#{bundle.ViewGeografiaLabel_macrozona}"/>
+                    <h:outputText value="#{geografiaController.selected.macrozona}" title="#{bundle.ViewGeografiaTitle_macrozona}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{geografiaController.destroyAndView}" value="#{bundle.ViewGeografiaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewGeografiaEditLink}"/>
+                <br />
+                <h:commandLink action="#{geografiaController.prepareCreate}" value="#{bundle.ViewGeografiaCreateLink}" />
+                <br />
+                <h:commandLink action="#{geografiaController.prepareList}" value="#{bundle.ViewGeografiaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewGeografiaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

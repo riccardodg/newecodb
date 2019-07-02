@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTipoModContrattoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTipoModContrattoEmpty}" rendered="#{tipoModContrattoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tipoModContrattoController.items.rowCount > 0}">
+                    <h:outputText value="#{tipoModContrattoController.pagination.pageFirstItem + 1}..#{tipoModContrattoController.pagination.pageLastItem + 1}/#{tipoModContrattoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{tipoModContrattoController.previous}" value="#{bundle.Previous} #{tipoModContrattoController.pagination.pageSize}" rendered="#{tipoModContrattoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{tipoModContrattoController.next}" value="#{bundle.Next} #{tipoModContrattoController.pagination.pageSize}" rendered="#{tipoModContrattoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{tipoModContrattoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoModContrattoTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoModContrattoTitle_tipoModContratto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoModContratto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{tipoModContrattoController.prepareView}" value="#{bundle.ListTipoModContrattoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tipoModContrattoController.prepareEdit}" value="#{bundle.ListTipoModContrattoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tipoModContrattoController.destroy}" value="#{bundle.ListTipoModContrattoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{tipoModContrattoController.prepareCreate}" value="#{bundle.ListTipoModContrattoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTipoModContrattoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewActiveContrattiSediClienteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewActiveContrattiSediClienteLabel_idTipoModContratto}"/>
+                    <h:outputText value="#{activeContrattiSediClienteController.selected.idTipoModContratto}" title="#{bundle.ViewActiveContrattiSediClienteTitle_idTipoModContratto}"/>
+                    <h:outputText value="#{bundle.ViewActiveContrattiSediClienteLabel_activeContracts}"/>
+                    <h:outputText value="#{activeContrattiSediClienteController.selected.activeContracts}" title="#{bundle.ViewActiveContrattiSediClienteTitle_activeContracts}"/>
+                    <h:outputText value="#{bundle.ViewActiveContrattiSediClienteLabel_idCliente}"/>
+                    <h:outputText value="#{activeContrattiSediClienteController.selected.idCliente}" title="#{bundle.ViewActiveContrattiSediClienteTitle_idCliente}"/>
+                    <h:outputText value="#{bundle.ViewActiveContrattiSediClienteLabel_idPartner}"/>
+                    <h:outputText value="#{activeContrattiSediClienteController.selected.idPartner}" title="#{bundle.ViewActiveContrattiSediClienteTitle_idPartner}"/>
+                    <h:outputText value="#{bundle.ViewActiveContrattiSediClienteLabel_sediAttive}"/>
+                    <h:outputText value="#{activeContrattiSediClienteController.selected.sediAttive}" title="#{bundle.ViewActiveContrattiSediClienteTitle_sediAttive}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{activeContrattiSediClienteController.destroyAndView}" value="#{bundle.ViewActiveContrattiSediClienteDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewActiveContrattiSediClienteEditLink}"/>
+                <br />
+                <h:commandLink action="#{activeContrattiSediClienteController.prepareCreate}" value="#{bundle.ViewActiveContrattiSediClienteCreateLink}" />
+                <br />
+                <h:commandLink action="#{activeContrattiSediClienteController.prepareList}" value="#{bundle.ViewActiveContrattiSediClienteShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewActiveContrattiSediClienteIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

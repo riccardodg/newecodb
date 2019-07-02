@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditGeografiaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditGeografiaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{geografiaController.selected.id}" title="#{bundle.EditGeografiaTitle_id}" required="true" requiredMessage="#{bundle.EditGeografiaRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditGeografiaLabel_codicegeografia}" for="codicegeografia" />
+                    <h:inputText id="codicegeografia" value="#{geografiaController.selected.codicegeografia}" title="#{bundle.EditGeografiaTitle_codicegeografia}" required="true" requiredMessage="#{bundle.EditGeografiaRequiredMessage_codicegeografia}"/>
+                    <h:outputLabel value="#{bundle.EditGeografiaLabel_provincia}" for="provincia" />
+                    <h:inputText id="provincia" value="#{geografiaController.selected.provincia}" title="#{bundle.EditGeografiaTitle_provincia}" />
+                    <h:outputLabel value="#{bundle.EditGeografiaLabel_microzona}" for="microzona" />
+                    <h:inputText id="microzona" value="#{geografiaController.selected.microzona}" title="#{bundle.EditGeografiaTitle_microzona}" required="true" requiredMessage="#{bundle.EditGeografiaRequiredMessage_microzona}"/>
+                    <h:outputLabel value="#{bundle.EditGeografiaLabel_macrozona}" for="macrozona" />
+                    <h:inputText id="macrozona" value="#{geografiaController.selected.macrozona}" title="#{bundle.EditGeografiaTitle_macrozona}" required="true" requiredMessage="#{bundle.EditGeografiaRequiredMessage_macrozona}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{geografiaController.update}" value="#{bundle.EditGeografiaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditGeografiaViewLink}"/>
+                <br />
+                <h:commandLink action="#{geografiaController.prepareList}" value="#{bundle.EditGeografiaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditGeografiaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

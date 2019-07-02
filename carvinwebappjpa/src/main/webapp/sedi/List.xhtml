@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSediTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListSediEmpty}" rendered="#{sediController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{sediController.items.rowCount > 0}">
+                    <h:outputText value="#{sediController.pagination.pageFirstItem + 1}..#{sediController.pagination.pageLastItem + 1}/#{sediController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{sediController.previous}" value="#{bundle.Previous} #{sediController.pagination.pageSize}" rendered="#{sediController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{sediController.next}" value="#{bundle.Next} #{sediController.pagination.pageSize}" rendered="#{sediController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{sediController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSediTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSediTitle_codicesede}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codicesede}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSediTitle_dataIni}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dataIni}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSediTitle_dataFin}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dataFin}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSediTitle_sediAttive}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sediAttive}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSediTitle_idCausa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCausa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSediTitle_idTipoSede}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoSede}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{sediController.prepareView}" value="#{bundle.ListSediViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{sediController.prepareEdit}" value="#{bundle.ListSediEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{sediController.destroy}" value="#{bundle.ListSediDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{sediController.prepareCreate}" value="#{bundle.ListSediCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListSediIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

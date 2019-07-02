@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewClientsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewClientsLabel_id}"/>
+                    <h:outputText value="#{clientsController.selected.id}" title="#{bundle.ViewClientsTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewClientsLabel_codicecliente}"/>
+                    <h:outputText value="#{clientsController.selected.codicecliente}" title="#{bundle.ViewClientsTitle_codicecliente}"/>
+                    <h:outputText value="#{bundle.ViewClientsLabel_paiv}"/>
+                    <h:outputText value="#{clientsController.selected.paiv}" title="#{bundle.ViewClientsTitle_paiv}"/>
+                    <h:outputText value="#{bundle.ViewClientsLabel_ragionesoc}"/>
+                    <h:outputText value="#{clientsController.selected.ragionesoc}" title="#{bundle.ViewClientsTitle_ragionesoc}"/>
+                    <h:outputText value="#{bundle.ViewClientsLabel_cofi}"/>
+                    <h:outputText value="#{clientsController.selected.cofi}" title="#{bundle.ViewClientsTitle_cofi}"/>
+                    <h:outputText value="#{bundle.ViewClientsLabel_dataIni}"/>
+                    <h:outputText value="#{clientsController.selected.dataIni}" title="#{bundle.ViewClientsTitle_dataIni}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewClientsLabel_dataFin}"/>
+                    <h:outputText value="#{clientsController.selected.dataFin}" title="#{bundle.ViewClientsTitle_dataFin}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewClientsLabel_activeClients}"/>
+                    <h:outputText value="#{clientsController.selected.activeClients}" title="#{bundle.ViewClientsTitle_activeClients}"/>
+                    <h:outputText value="#{bundle.ViewClientsLabel_idCausa}"/>
+                    <h:outputText value="#{clientsController.selected.idCausa}" title="#{bundle.ViewClientsTitle_idCausa}"/>
+                    <h:outputText value="#{bundle.ViewClientsLabel_idTipoCliente}"/>
+                    <h:outputText value="#{clientsController.selected.idTipoCliente}" title="#{bundle.ViewClientsTitle_idTipoCliente}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{clientsController.destroyAndView}" value="#{bundle.ViewClientsDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewClientsEditLink}"/>
+                <br />
+                <h:commandLink action="#{clientsController.prepareCreate}" value="#{bundle.ViewClientsCreateLink}" />
+                <br />
+                <h:commandLink action="#{clientsController.prepareList}" value="#{bundle.ViewClientsShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewClientsIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

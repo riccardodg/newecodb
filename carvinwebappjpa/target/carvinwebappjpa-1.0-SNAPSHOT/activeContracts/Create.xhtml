@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateActiveContractsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateActiveContractsLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{activeContractsController.selected.id}" title="#{bundle.CreateActiveContractsTitle_id}" required="true" requiredMessage="#{bundle.CreateActiveContractsRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateActiveContractsLabel_codicecontratto}" for="codicecontratto" />
+                    <h:inputText id="codicecontratto" value="#{activeContractsController.selected.codicecontratto}" title="#{bundle.CreateActiveContractsTitle_codicecontratto}" required="true" requiredMessage="#{bundle.CreateActiveContractsRequiredMessage_codicecontratto}"/>
+                    <h:outputLabel value="#{bundle.CreateActiveContractsLabel_dataIni}" for="dataIni" />
+                    <h:inputText id="dataIni" value="#{activeContractsController.selected.dataIni}" title="#{bundle.CreateActiveContractsTitle_dataIni}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateActiveContractsLabel_dataFin}" for="dataFin" />
+                    <h:inputText id="dataFin" value="#{activeContractsController.selected.dataFin}" title="#{bundle.CreateActiveContractsTitle_dataFin}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateActiveContractsLabel_anagraficaContratti}" for="anagraficaContratti" />
+                    <h:selectOneMenu id="anagraficaContratti" value="#{activeContractsController.selected.anagraficaContratti}" title="#{bundle.CreateActiveContractsTitle_anagraficaContratti}" >
+                        <f:selectItems value="#{anagraficaContrattiController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateActiveContractsLabel_idTipoContratto}" for="idTipoContratto" />
+                    <h:selectOneMenu id="idTipoContratto" value="#{activeContractsController.selected.idTipoContratto}" title="#{bundle.CreateActiveContractsTitle_idTipoContratto}" >
+                        <f:selectItems value="#{tipoContrattoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateActiveContractsLabel_contracts}" for="contracts" />
+                    <h:selectOneMenu id="contracts" value="#{activeContractsController.selected.contracts}" title="#{bundle.CreateActiveContractsTitle_contracts}" required="true" requiredMessage="#{bundle.CreateActiveContractsRequiredMessage_contracts}">
+                        <f:selectItems value="#{contractsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{activeContractsController.create}" value="#{bundle.CreateActiveContractsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{activeContractsController.prepareList}" value="#{bundle.CreateActiveContractsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateActiveContractsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

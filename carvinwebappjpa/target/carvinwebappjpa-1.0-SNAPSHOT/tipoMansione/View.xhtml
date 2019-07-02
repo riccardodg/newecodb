@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTipoMansioneTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTipoMansioneLabel_id}"/>
+                    <h:outputText value="#{tipoMansioneController.selected.id}" title="#{bundle.ViewTipoMansioneTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewTipoMansioneLabel_tipoMansione}"/>
+                    <h:outputText value="#{tipoMansioneController.selected.tipoMansione}" title="#{bundle.ViewTipoMansioneTitle_tipoMansione}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tipoMansioneController.destroyAndView}" value="#{bundle.ViewTipoMansioneDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTipoMansioneEditLink}"/>
+                <br />
+                <h:commandLink action="#{tipoMansioneController.prepareCreate}" value="#{bundle.ViewTipoMansioneCreateLink}" />
+                <br />
+                <h:commandLink action="#{tipoMansioneController.prepareList}" value="#{bundle.ViewTipoMansioneShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTipoMansioneIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

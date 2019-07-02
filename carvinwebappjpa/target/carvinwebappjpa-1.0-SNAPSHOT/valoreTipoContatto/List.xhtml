@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListValoreTipoContattoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListValoreTipoContattoEmpty}" rendered="#{valoreTipoContattoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{valoreTipoContattoController.items.rowCount > 0}">
+                    <h:outputText value="#{valoreTipoContattoController.pagination.pageFirstItem + 1}..#{valoreTipoContattoController.pagination.pageLastItem + 1}/#{valoreTipoContattoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{valoreTipoContattoController.previous}" value="#{bundle.Previous} #{valoreTipoContattoController.pagination.pageSize}" rendered="#{valoreTipoContattoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{valoreTipoContattoController.next}" value="#{bundle.Next} #{valoreTipoContattoController.pagination.pageSize}" rendered="#{valoreTipoContattoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{valoreTipoContattoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListValoreTipoContattoTitle_valoreContatto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valoreContatto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListValoreTipoContattoTitle_principale}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.principale}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListValoreTipoContattoTitle_tipoContatto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoContatto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListValoreTipoContattoTitle_contattiAttivi}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contattiAttivi}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{valoreTipoContattoController.prepareView}" value="#{bundle.ListValoreTipoContattoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{valoreTipoContattoController.prepareEdit}" value="#{bundle.ListValoreTipoContattoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{valoreTipoContattoController.destroy}" value="#{bundle.ListValoreTipoContattoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{valoreTipoContattoController.prepareCreate}" value="#{bundle.ListValoreTipoContattoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListValoreTipoContattoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

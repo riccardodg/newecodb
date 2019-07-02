@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateHisSediTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateHisSediLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{hisSediController.selected.id}" title="#{bundle.CreateHisSediTitle_id}" required="true" requiredMessage="#{bundle.CreateHisSediRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateHisSediLabel_idSedeB}" for="idSedeB" />
+                    <h:inputText id="idSedeB" value="#{hisSediController.selected.idSedeB}" title="#{bundle.CreateHisSediTitle_idSedeB}" required="true" requiredMessage="#{bundle.CreateHisSediRequiredMessage_idSedeB}"/>
+                    <h:outputLabel value="#{bundle.CreateHisSediLabel_idSedeA}" for="idSedeA" />
+                    <h:selectOneMenu id="idSedeA" value="#{hisSediController.selected.idSedeA}" title="#{bundle.CreateHisSediTitle_idSedeA}" required="true" requiredMessage="#{bundle.CreateHisSediRequiredMessage_idSedeA}">
+                        <f:selectItems value="#{sediAttiveController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{hisSediController.create}" value="#{bundle.CreateHisSediSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{hisSediController.prepareList}" value="#{bundle.CreateHisSediShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateHisSediIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

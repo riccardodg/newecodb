@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListActiveClientsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListActiveClientsEmpty}" rendered="#{activeClientsController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{activeClientsController.items.rowCount > 0}">
+                    <h:outputText value="#{activeClientsController.pagination.pageFirstItem + 1}..#{activeClientsController.pagination.pageLastItem + 1}/#{activeClientsController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{activeClientsController.previous}" value="#{bundle.Previous} #{activeClientsController.pagination.pageSize}" rendered="#{activeClientsController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{activeClientsController.next}" value="#{bundle.Next} #{activeClientsController.pagination.pageSize}" rendered="#{activeClientsController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{activeClientsController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActiveClientsTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActiveClientsTitle_codicecliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codicecliente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActiveClientsTitle_dataIni}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dataIni}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActiveClientsTitle_dataFin}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dataFin}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActiveClientsTitle_idTipoCliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoCliente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActiveClientsTitle_clients}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.clients}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{activeClientsController.prepareView}" value="#{bundle.ListActiveClientsViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{activeClientsController.prepareEdit}" value="#{bundle.ListActiveClientsEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{activeClientsController.destroy}" value="#{bundle.ListActiveClientsDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{activeClientsController.prepareCreate}" value="#{bundle.ListActiveClientsCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListActiveClientsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

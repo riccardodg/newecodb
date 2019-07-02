@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditAnagraficaContrattiTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditAnagraficaContrattiLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{anagraficaContrattiController.selected.id}" title="#{bundle.EditAnagraficaContrattiTitle_id}" required="true" requiredMessage="#{bundle.EditAnagraficaContrattiRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditAnagraficaContrattiLabel_info1}" for="info1" />
+                    <h:inputTextarea rows="4" cols="30" id="info1" value="#{anagraficaContrattiController.selected.info1}" title="#{bundle.EditAnagraficaContrattiTitle_info1}" required="true" requiredMessage="#{bundle.EditAnagraficaContrattiRequiredMessage_info1}"/>
+                    <h:outputLabel value="#{bundle.EditAnagraficaContrattiLabel_info2}" for="info2" />
+                    <h:inputTextarea rows="4" cols="30" id="info2" value="#{anagraficaContrattiController.selected.info2}" title="#{bundle.EditAnagraficaContrattiTitle_info2}" required="true" requiredMessage="#{bundle.EditAnagraficaContrattiRequiredMessage_info2}"/>
+                    <h:outputLabel value="#{bundle.EditAnagraficaContrattiLabel_info3}" for="info3" />
+                    <h:inputTextarea rows="4" cols="30" id="info3" value="#{anagraficaContrattiController.selected.info3}" title="#{bundle.EditAnagraficaContrattiTitle_info3}" required="true" requiredMessage="#{bundle.EditAnagraficaContrattiRequiredMessage_info3}"/>
+                    <h:outputLabel value="#{bundle.EditAnagraficaContrattiLabel_info4}" for="info4" />
+                    <h:inputTextarea rows="4" cols="30" id="info4" value="#{anagraficaContrattiController.selected.info4}" title="#{bundle.EditAnagraficaContrattiTitle_info4}" required="true" requiredMessage="#{bundle.EditAnagraficaContrattiRequiredMessage_info4}"/>
+                    <h:outputLabel value="#{bundle.EditAnagraficaContrattiLabel_info5}" for="info5" />
+                    <h:inputTextarea rows="4" cols="30" id="info5" value="#{anagraficaContrattiController.selected.info5}" title="#{bundle.EditAnagraficaContrattiTitle_info5}" required="true" requiredMessage="#{bundle.EditAnagraficaContrattiRequiredMessage_info5}"/>
+                    <h:outputLabel value="#{bundle.EditAnagraficaContrattiLabel_activeContracts}" for="activeContracts" />
+                    <h:selectOneMenu id="activeContracts" value="#{anagraficaContrattiController.selected.activeContracts}" title="#{bundle.EditAnagraficaContrattiTitle_activeContracts}" required="true" requiredMessage="#{bundle.EditAnagraficaContrattiRequiredMessage_activeContracts}">
+                        <f:selectItems value="#{activeContractsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{anagraficaContrattiController.update}" value="#{bundle.EditAnagraficaContrattiSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditAnagraficaContrattiViewLink}"/>
+                <br />
+                <h:commandLink action="#{anagraficaContrattiController.prepareList}" value="#{bundle.EditAnagraficaContrattiShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditAnagraficaContrattiIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

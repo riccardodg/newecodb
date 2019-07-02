@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditActiveClientsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditActiveClientsLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{activeClientsController.selected.id}" title="#{bundle.EditActiveClientsTitle_id}" required="true" requiredMessage="#{bundle.EditActiveClientsRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditActiveClientsLabel_codicecliente}" for="codicecliente" />
+                    <h:inputText id="codicecliente" value="#{activeClientsController.selected.codicecliente}" title="#{bundle.EditActiveClientsTitle_codicecliente}" required="true" requiredMessage="#{bundle.EditActiveClientsRequiredMessage_codicecliente}"/>
+                    <h:outputLabel value="#{bundle.EditActiveClientsLabel_dataIni}" for="dataIni" />
+                    <h:inputText id="dataIni" value="#{activeClientsController.selected.dataIni}" title="#{bundle.EditActiveClientsTitle_dataIni}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditActiveClientsLabel_dataFin}" for="dataFin" />
+                    <h:inputText id="dataFin" value="#{activeClientsController.selected.dataFin}" title="#{bundle.EditActiveClientsTitle_dataFin}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditActiveClientsLabel_idTipoCliente}" for="idTipoCliente" />
+                    <h:selectOneMenu id="idTipoCliente" value="#{activeClientsController.selected.idTipoCliente}" title="#{bundle.EditActiveClientsTitle_idTipoCliente}" >
+                        <f:selectItems value="#{tipoClienteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditActiveClientsLabel_clients}" for="clients" />
+                    <h:selectOneMenu id="clients" value="#{activeClientsController.selected.clients}" title="#{bundle.EditActiveClientsTitle_clients}" required="true" requiredMessage="#{bundle.EditActiveClientsRequiredMessage_clients}">
+                        <f:selectItems value="#{clientsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{activeClientsController.update}" value="#{bundle.EditActiveClientsSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditActiveClientsViewLink}"/>
+                <br />
+                <h:commandLink action="#{activeClientsController.prepareList}" value="#{bundle.EditActiveClientsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditActiveClientsIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

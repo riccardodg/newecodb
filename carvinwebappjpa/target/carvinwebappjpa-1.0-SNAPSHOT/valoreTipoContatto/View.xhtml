@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewValoreTipoContattoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewValoreTipoContattoLabel_valoreContatto}"/>
+                    <h:outputText value="#{valoreTipoContattoController.selected.valoreContatto}" title="#{bundle.ViewValoreTipoContattoTitle_valoreContatto}"/>
+                    <h:outputText value="#{bundle.ViewValoreTipoContattoLabel_principale}"/>
+                    <h:outputText value="#{valoreTipoContattoController.selected.principale}" title="#{bundle.ViewValoreTipoContattoTitle_principale}"/>
+                    <h:outputText value="#{bundle.ViewValoreTipoContattoLabel_tipoContatto}"/>
+                    <h:outputText value="#{valoreTipoContattoController.selected.tipoContatto}" title="#{bundle.ViewValoreTipoContattoTitle_tipoContatto}"/>
+                    <h:outputText value="#{bundle.ViewValoreTipoContattoLabel_contattiAttivi}"/>
+                    <h:outputText value="#{valoreTipoContattoController.selected.contattiAttivi}" title="#{bundle.ViewValoreTipoContattoTitle_contattiAttivi}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{valoreTipoContattoController.destroyAndView}" value="#{bundle.ViewValoreTipoContattoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewValoreTipoContattoEditLink}"/>
+                <br />
+                <h:commandLink action="#{valoreTipoContattoController.prepareCreate}" value="#{bundle.ViewValoreTipoContattoCreateLink}" />
+                <br />
+                <h:commandLink action="#{valoreTipoContattoController.prepareList}" value="#{bundle.ViewValoreTipoContattoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewValoreTipoContattoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
